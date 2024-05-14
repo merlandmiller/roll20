@@ -2165,15 +2165,21 @@ span.sheet-powerconcentration
 .sheet-rolltemplate-simple .sheet-label,
 .sheet-rolltemplate-atk .sheet-label,
 .sheet-rolltemplate-atkdmg .sheet-label,
-.sheet-rolltemplate-dmg .sheet-label
+.sheet-rolltemplate-dmg .sheet-label,
+.sheet-rolltemplate-power .sheet-title
+.sheet-rolltemplate-npc .sheet-header,
+.sheet-rolltemplate-npcaction .sheet-header,
+.sheet-rolltemplate-npcatk .sheet-header,
+.sheet-rolltemplate-npcdmg .sheet-header
 {
+    border: 10px solid rgba(0, 0, 0, 0);
     border-image: url(https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png) 17 27 fill repeat;
     text-transform: uppercase;
     text-align: center;
     font-family: Contrail One;
     margin-top: -25px;
     /* padding-bottom: 5px; */
-    padding: 5px;
+    /* padding: 5px; */
     color: white;
     margin-left: -8px;
 }
@@ -2249,7 +2255,7 @@ span.sheet-powerconcentration
 .sheet-rolltemplate-mancerroll .inlinerollresult.importantroll,
 .sheet-rolltemplate-mancerroll .inlinerollresult.fullfail
 {
-    color: black;
+    /* color: black; */
     border: 0px;
 }
 
@@ -2330,7 +2336,7 @@ span.sheet-powerconcentration
 {
     font-style: italic;
     margin-top: 2px;
-    min-height: 17px;
+    /* min-height: 17px; */
     text-align: center;
     padding: 5px 5px 5px 5px;
     background-color: white;
@@ -2402,16 +2408,17 @@ span.sheet-powerconcentration
 .sheet-rolltemplate-atkdmg .sheet-desc .sheet-sublabel,
 .sheet-rolltemplate-dmg .sheet-desc .sheet-sublabel
 {
+    border: 10px solid rgba(0, 0, 0, 0);
     border-image: url("https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png") 17 27 fill repeat;
     display: block;
-    width: 100%;
-    font-size: 15px;
+    width: auto;
+    /* font-size: 15px; */
     font-weight: normal;
     /* margin-top: -5px; */
     font-family: Contrail One;
     text-transform: uppercase;
     color: red;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     margin-top: 0px;
 }
 
@@ -2480,15 +2487,14 @@ span.sheet-powerconcentration
 }
 
 .sheet-rolltemplate-power .sheet-title {
-    /* color: rgb(126, 45, 64); */
-    color: white;
     font-size: 1.2em;
+    border: 10px solid transparent;
     border-image: url("https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png") 17 27 fill repeat;
     margin: -25px 0px 0px -10px;
     border-radius: 10px;
-    padding: 5px 15px 5px 15px;
+    padding: 0px 15px 0px 15px;
     font-family: Contrail One;
-    text-transform: uppercase;
+    color: white;
 }
 
 .sheet-rolltemplate-power .sheet-italics,
@@ -3009,13 +3015,12 @@ span.sheet-powerconcentration
 .sheet-rolltemplate-npcdmg {
     margin-top: -8px;
 }
- 
+
 .sheet-rolltemplate-npc .sheet-header,
 .sheet-rolltemplate-npcaction .sheet-header,
 .sheet-rolltemplate-npcatk .sheet-header,
 .sheet-rolltemplate-npcdmg .sheet-header
 {
-    color: rgb(126, 45, 64);
     font-size: 18px;
     border-image: url("https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png") 17 27 fill repeat;
     text-transform: uppercase;
@@ -3025,7 +3030,7 @@ span.sheet-powerconcentration
     padding: 5px;
     color: white;
     margin-left: -8px;
-}
+} 
 
 .sheet-rolltemplate-traits .sheet-header {
     font-family: "Times New Roman", Times, serif;
@@ -3112,19 +3117,28 @@ span.sheet-powerconcentration
     margin-top: 2px;
 }
 
-.sheet-rolltemplate-npc .sheet-row
+/* .sheet-rolltemplate-npc .sheet-row
 {
     background-color: white;
     padding: 5px;
     box-shadow: 0px 0px 15px 3px inset #000;
-}
+} */
 
+.sheet-rolltemplate-npc .sheet-row,
+.sheet-rolltemplate-npcdmg .sheet-container,
 .sheet-rolltemplate-npcatk .sheet-row
 {
     background-color: white;
     padding: 5px;
     box-shadow: 0px 0px 15px 3px inset #000;
+    color: black;
 }
+
+.textchatcontainer .inlinerollresult{
+    background-color: white;
+}
+
+
  
 .sheet-rolltemplate-npc .inlinerollresult,
 .sheet-rolltemplate-npcaction .inlinerollresult,
@@ -3842,6 +3856,46 @@ span.sheet-powerconcentration
 
 .charsheet.lang-cs .sheet-hlabel-container input.sheet-class-level {
     width: 28px;
+}
+
+
+/* My custom carater sheet additions */
+.charsheet .sheet-ac-init-speed-container div {
+    background-color: white;
+}
+
+ /* .charsheet .sheet-ac-init-speed-container span.sheet-label {
+    margin-top: 0px;
+    border-image: url(https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png) 17 27 fill repeat;
+    color: white;
+}  */
+
+.charsheet .sheet-ac-init-speed-container span.sheet-label,
+.charsheet .sheet-attr-container button[type=roll], 
+.charsheet .sheet-saving-throw button[type=roll], 
+.charsheet .sheet-skill button[type=roll], 
+.charsheet .sheet-ac-init-speed-container button[type=roll], 
+.charsheet .sheet-npc button[type=roll]{
+    /* background-color: rgb(22, 56, 110) */
+    color: white;
+
+    border-image: url(https://imgsrv.roll20.net//?src=https%3A%2F%2Fraw.githubusercontent.com%2FRoll20%2Froll20-character-sheets%2Fmaster%2FStarfinder%2520by%2520Roll20%2FAssets%2FSF_header.png) 17 27 fill repeat;
+}
+
+.charsheet .sheet-attr-container button[type=roll]:hover, 
+.charsheet .sheet-saving-throw button[type=roll]:hover, 
+.charsheet .sheet-skill button[type=roll]:hover, 
+.charsheet .sheet-ac-init-speed-container button[type=roll]:hover, 
+.charsheet .sheet-npc button[type=roll]:hover{
+    color: red;
+}
+
+
+
+.charsheet .sheet-skill button[type=roll],
+.charsheet .sheet-saving-throw button[type=roll]{
+    padding-left: 3px;
+
 }
 
 
