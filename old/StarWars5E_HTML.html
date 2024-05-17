@@ -4195,8 +4195,8 @@
                     <div class="row">
                         <span data-i18n="add-char-to-templates:-u">ADD CHARACTER NAME TO TEMPLATES:</span>
                         <select class="dtype" name="attr_charname_output">
-                            <option value="{{charname=@{character_name}}}" data-i18n="on" selected>On</option>
-                            <option value="charname=@{character_name}" data-i18n="off">Off</option>
+                            <option value="{{charname=@{character_name}}}" data-i18n="on">On</option>
+                            <option value="charname=@{character_name}" selected="selected" data-i18n="off">Off</option>
                         </select>
                     </div>
                     <div class="row">
@@ -5617,8 +5617,8 @@
                     <div class="row">
                         <span data-i18n="add-char-to-templates:-u">ADD CHARACTER NAME TO TEMPLATES:</span>
                         <select class="dtype" name="attr_charname_output">
-                            <option value="{{charname=@{character_name}}}" data-i18n="on" selected>On</option>
-                            <option value="charname=@{character_name}" data-i18n="off">Off</option>
+                            <option value="{{charname=@{character_name}}}" data-i18n="on">On</option>
+                            <option value="charname=@{character_name}" selected="selected" data-i18n="off">Off</option>
                         </select>
                     </div>
                     <div class="row">
@@ -6162,18 +6162,17 @@
                     <span>{{range}}</span>
                 </div>
             {{/range}}
-            
+            {{#charname}}
+                <div class="charname">
+                    <span>{{charname}}</span>
+                </div>
+            {{/charname}}
         </div>
         {{#desc}}
             <div class="desc info">
                 <span><span class="top"></span><span class="middle">{{desc}}</span><span class="bottom"></span>
             </div>
         {{/desc}}
-        {{#charname}}
-        <div class="charname">
-            <span>{{charname}}</span>
-        </div>
-        {{/charname}}
     </rolltemplate>
 
     <rolltemplate class="sheet-rolltemplate-dmg">
@@ -6625,11 +6624,6 @@
                 <span class="bold italics" data-i18n="at-higher-lvl">At Higher Levels</span>. <span class="description">{{athigherlevels}}<span>
             </div>
             {{/athigherlevels}}
-            {{#charname}}
-                <div class="charname">
-                    <span>{{charname}}</span>
-                </div>
-            {{/charname}}
         </div>
     </rolltemplate>
 
@@ -6939,25 +6933,10 @@
 
 </div>
 
-        <!-- merland default -->
-        
-        <!-- getAttrs(["attr_charname_output"], function(v) { -->
-            <!-- console.log("opening") -->
-        <!-- }); -->
-
-        <!-- versioning(function() { -->
-            
-            <!-- setAttrs({version: "2.5", "npc": "1"}, function(){
-                console.log("showing names")
-            }); -->
-
 <!-- WORKERS -->
 <script type="text/worker">
 
     on("sheet:opened", function(eventinfo) {
-        getAttrs(["charname_output"], function(v) {
-            console.log("@{charname_output}")
-        });
         versioning(function() {
             if(eventinfo.sourceType === "sheetworker") {
                 setAttrs({l1mancer_status: "completed"})
@@ -6971,12 +6950,13 @@
     });
 
     on("sheet:compendium-drop", function() {
-        alert("test");
+        console.log("dropping !!!!!!!!!!");
         getAttrs(["hp_max","npc_senses","token_size","cd_bar1_v","cd_bar1_m","cd_bar1_l","cd_bar2_v","cd_bar2_m","cd_bar2_l","cd_bar3_v","cd_bar3_m","cd_bar3_l"], function(v) {
-
             var default_attr = {};
             default_attr["width"] = 70;
             default_attr["height"] = 70;
+            console.log("set something!!!!!!");
+
             if(v["npc_senses"].toLowerCase().match(/(darkvision|blindsight|tremorsense|truesight)/)) {
                 default_attr["light_radius"] = Math.max.apply(Math, v["npc_senses"].match(/\d+/g));
             }
@@ -7003,6 +6983,7 @@
                     }
                 });
             }
+
 
             getAttrs(_.values(getList), function(values) {
                 _.each(_.keys(getList), function(keyname) {
@@ -7051,14 +7032,13 @@
                         default_attr["bar3_max"] = v["cd_bar3_m"];
                     }
                 }
-                default_attr["bar1_link"] = "hp_max"
+                console.log("working");
                 setDefaultToken(default_attr);
             });
         });
     });
 
     on("change:strength_base change:strength_bonus", function() {
-        console.log("test");
         update_attr("strength");
     });
 
@@ -12921,6 +12901,7 @@
             }
 
             if(v["charactermancer_step"]) {
+                
                 startCharactermancer(v["charactermancer_step"]);
             }
             else {
@@ -13235,8 +13216,7 @@
             }
             else if(v["version"] === "2.4") {
                 console.log("UPGRADING TO v2.5");
-
-                // merland defaults
+                <!-- merland -->
                 setAttrs({version: "2.5", "npc": "1"}, function(){
                     finished();
                 });
@@ -13297,7 +13277,6 @@
     });
 
     on("mancerfinish:l1-mancer", function(eventinfo) {
-        console.log("mabs")
         var noEquipmentDrop = false;
         if(eventinfo.data["l1-equipment"]) {
             noEquipmentDrop = eventinfo.data["l1-equipment"].values["equipment_type"] == "gold";
